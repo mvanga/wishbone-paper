@@ -1,4 +1,19 @@
 Abstract
 ========
 
+The Wishbone bus is an open source hardware computer bus intended to let
+different IP blocks within an integrated circuit communicate with each other.
 
+This paper introduces a specification that allows designers to describe the
+IP blocks connected to a Wishbone bus inside an FPGA. This allows for the
+automatic detection of the IP blocks within the FPGA at runtime by the operating
+system.
+
+This technique has been used in practice in a set of FPGA based carrier boards
+being developed at the Open Hardware Repository. A Linux bus driver has been
+implemented that supports this specification thus allowing for the automatic
+loading of the appropriate set of drivers without any additional information from
+the user.
+
+Such a scheme greatly simplifies the design of device drivers for FPGA based systems
+and allows for their reuse in multiple designs.
