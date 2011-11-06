@@ -2,18 +2,23 @@ Abstract
 ========
 
 The Wishbone bus is an open source hardware computer bus intended to let
-different IP blocks within an integrated circuit communicate with each other.
+different logic blocks within an integrated circuit communicate with each other.
 
-This paper introduces a specification that allows designers to describe the
-IP blocks connected to a Wishbone bus inside an FPGA. This allows for the
-automatic detection of the IP blocks within the FPGA at runtime by the operating
-system.
+This paper introduces a set of memory mapped data structures that allow
+designers to describe their own logic blocks.  Thus, for compliant chip designs,
+the operating system can enumerate the Wishbone bus inside the integrated
+circuits, to load the appropriate drivers, similar to PCI or USB.
 
-This technique has been used in practice in a set of FPGA based carrier boards
-being developed at the Open Hardware Repository. A Linux bus driver has been
-implemented that supports this specification thus allowing for the automatic
-loading of the appropriate set of drivers without any additional information from
-the user.
+The proposed specification is already being used in a set of FPGA based
+cards being developed at the Open Hardware Repository. By defining a new bus
+type within the Linux kernel, the driver for each board can register as a
+Wishbone controller and benefit from automatic enumeration.  The bus controller
+can use the information it retrieves to load or activate the appropriate set of
+drivers to manage either the whole board or the various peripherals that
+are attached to the internal Wishbone bus.
 
-Such a scheme greatly simplifies the design of device drivers for FPGA based systems
-and allows for their reuse in multiple designs.
+Such a scheme greatly simplifies managing the variety of FPGA binary images,
+by allowing automatic division of the problem space. Even when a single
+driver is needed for the whole device-set within the internal bus, a standardized
+identification mechanism reliefs system administrators from manually matching
+FPGA images and software drivers.
